@@ -2,8 +2,11 @@ varying vec2 vUv;
 varying vec3 vPosition;
 
 uniform float uTime;
-uniform float uHeight;
-uniform float uMoveStrength;
+uniform float uWaveRadius;
+uniform float uWavesFrequency;
+uniform float uWaveHeight;
+
+attribute float aRandom;
 
 #pragma glslify: perlin3d = require('../partials/perlin3d.glsl')
 
@@ -12,12 +15,14 @@ vec3 getWaterPosition(vec3 _position)
 {
       vec3 updatedPosition = _position;
 
-      float waveSin = sin(updatedPosition.z + cos(updatedPosition.x) + (uTime)) * uHeight;
-      float waveCos = cos(updatedPosition.z + sin(updatedPosition.x) + (uTime)) * uHeight;
+      float circledPosition = (updatedPosition.z * 1.0 + updatedPosition.x );
 
+      float xCos = cos( circledPosition * uWavesFrequency + uTime ) * uWaveRadius;
+      float ySin = sin( circledPosition * uWavesFrequency + uTime )* uWaveRadius;
 
-      updatedPosition.y += waveSin;
-      updatedPosition.y += waveCos;
+      updatedPosition.y += ySin * uWaveHeight;
+      updatedPosition.x += xCos;
+      updatedPosition.x -= (ySin * 3.0);
 
 
       return updatedPosition;

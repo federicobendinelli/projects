@@ -17,7 +17,6 @@ export default class Ocean
             this.debug = this.expirience.debug
             this.time = this.expirience.time
 
-            this.setRayCaster()
             this.setGeometry()
             this.setMaterial()
             this.setInstance()
@@ -25,23 +24,6 @@ export default class Ocean
 
       }
 
-      setRayCaster()
-      {
-            this.touchPosition = new THREE.Vector3();
-
-            this.mousePosition = new THREE.Vector2()
-            this.raycaster = new THREE.Raycaster()
-
-            var onPointerMove = ( event )  => {
-
-                  this.mousePosition.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-                  this.mousePosition.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-            
-            }
-            
-            window.addEventListener( 'pointermove', onPointerMove );
-
-      }
 
       setDebug()
       {
@@ -52,28 +34,39 @@ export default class Ocean
             })
 
             folder.addInput(
-                  this.material.uniforms.uHeight,
+                  this.material.uniforms.uWaveRadius,
                   'value',
-                  { min: 0 , max: 3 , label:'uHeight' }
+                  { min: 0 , max: 3 , label:'uWaveRadius' }
             )
 
             folder.addInput(
-                  this.material.uniforms.uOceanCurrent,
+                  this.material.uniforms.uWavesFrequency,
                   'value',
-                  { min: 0 , max: 3 , label:'uOceanCurrent' }
+                  { min: 0 , max: 3 , label:'uWavesFrequency' }
             )
 
             folder.addInput(
-                  this.material.uniforms.uMoveStrength,
+                  this.material.uniforms.uWaveHeight,
                   'value',
-                  { min: 0 , max: 3 , label:'uMoveStrength' }
+                  { min: 0 , max: 3 , label:'uWaveHeight' }
             )
+
       }
 
       setGeometry()
       {
             this.geometry = new THREE.PlaneGeometry(10 , 10 , 128 , 128)
             this.geometry.rotateX(-Math.PI/2)
+
+
+            const randomWaveArray = new Float32Array(128 * 128)
+
+            for (let i = 0; i < randomWaveArray.length; i++) {
+                  randomWaveArray [ i ] = Math.random()     
+                  // randomWaveArray [ i * 3 + 2 ] = Math.random()                               
+            }
+
+            this.geometry.setAttribute('aRandom' , new THREE.BufferAttribute(randomWaveArray , 1))
 
       }
 
@@ -89,10 +82,11 @@ export default class Ocean
 
                   uniforms: {
                         uTime: { value: 0.0 },
-                        uHeight: { value: 0.3 },
-                        uMoveStrength: { value: 0.3 },
-                        uOceanCurrent: { value: 1.0 },
-                        uTouchPosition: { value: this.touchPosition }
+
+                        uWaveRadius: { value: 0.3 },
+                        uWavesFrequency: { value: 1.0 },
+
+                        uWaveHeight: { value: 1.0 }
                   },
 
                   wireframe:true,
@@ -117,19 +111,5 @@ export default class Ocean
             this.material.uniforms.uTime.value = this.time.elapsed / 400
       
       
-            if (this.raycaster) 
-            {
-                  this.raycaster.setFromCamera( this.mousePosition, this.camera.instance );
-
-                  const intersects = this.raycaster.intersectObjects( this.scene.children );
-            
-                  
-                  if (intersects.length) 
-                  {
-                        this.touchPosition = intersects[0].point
-                        this.material.uniforms.uTouchPosition.value = this.touchPosition;
-                  }
-
-            }
       }
 }

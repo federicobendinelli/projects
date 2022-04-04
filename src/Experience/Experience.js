@@ -65,14 +65,16 @@ export default class Experience
         // Width and height
         const boundings = this.targetElement.getBoundingClientRect()
         this.config.width = boundings.width
-        this.config.height = boundings.height || window.innerHeight
+        this.config.height = boundings.height
+
     }
 
     setDebug()
     {
         if(this.config.debug)
         {
-            this.debug = new Pane()
+            this.debug = new Pane({
+            })
             this.debug.containerElem_.style.width = '370px'
             this.debug.containerElem_.style.position = 'fixed'
         }

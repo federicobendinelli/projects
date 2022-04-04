@@ -26,6 +26,8 @@ export default class Renderer
 
         this.setInstance()
         this.setPostProcess()
+
+        this.sizes.trigger('resize')
     }
 
     setInstance()
