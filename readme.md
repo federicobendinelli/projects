@@ -1,16 +1,13 @@
 # Idee
 
 ## il mio progetto è quello di creare un software che riesca a prendere decisioni secondo molteplici fattori
-##
-##
-##
-##
-##
+
+
+
 ## Se volete provare andate sul [sito](https://fede.didosystem.ch/Idee)
-##
-##
-##
-##
+
+
+
 ## Se volete modificarlo a vostro piacimento, seguite questi passaggi
 
 ```bash
