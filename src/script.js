@@ -1,7 +1,11 @@
 import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
 import * as dat from "lil-gui";
+import Stats from 'stats.js'
+
+
 import galaxyVertexShader from "./shaders/galaxy/vertex.glsl";
 import galaxyFragmentShader from "./shaders/galaxy/fragment.glsl";
 
@@ -11,6 +15,11 @@ import galaxyFragmentShader from "./shaders/galaxy/fragment.glsl";
 // Debug
 const gui = new dat.GUI();
 gui.domElement.style.width = '400px'
+
+// Stats
+const stats = new Stats()
+stats.showPanel(1)
+
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");

@@ -1,3 +1,3 @@
-# Ideas
+# Idee
 
-# my project is to create a software hwo can bring decisions on multiples factors
+# il mio progetto è quello di creare un software che riesca a prendere decisioni secondo molteplici fattori
