@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 import * as dat from "lil-gui";
-import Stats from 'stats.js'
+import StatsJs from 'stats.js'
 
 
 import galaxyVertexShader from "./shaders/galaxy/vertex.glsl";
@@ -12,13 +12,6 @@ import galaxyFragmentShader from "./shaders/galaxy/fragment.glsl";
 /**
  * Base
  */
-// Debug
-const gui = new dat.GUI();
-gui.domElement.style.width = '400px'
-
-// Stats
-const stats = new Stats()
-stats.showPanel(1)
 
 
 // Canvas
@@ -26,6 +19,8 @@ const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
+
+var useDebug = true;
 
 /**
  * Galaxy
@@ -45,7 +40,6 @@ parameters.outsideColor = "#1b3984";
 let geometry = null;
 let material = null;
 let points = null;
-
 
 
 /**
@@ -203,10 +197,12 @@ function generateGalaxy()
 /**
  * Debug
  */
-debug()
 
 function debug() 
 {
+  if (!useDebug) return console.warn('No debug enabled')
+  const gui = new dat.GUI();
+  gui.domElement.style.width = '400px'
   gui
   .add(parameters, "count")
   .min(100)
@@ -249,6 +245,8 @@ function debug()
     .name('uSize')
 }
 
+debug()
+
 
 /**
  * Animate
@@ -269,6 +267,7 @@ const tick = () => {
 
   // Call tick again on the next frame
   window.requestAnimationFrame(tick);
+
 };
 
 tick();
