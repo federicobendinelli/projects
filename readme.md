@@ -1,6 +1,6 @@
 # Projects
 
-# [Demo](https://fede.didosystem.ch/projects)
+# [Demo](https://fede.didosystem.ch/projects/#debug+galaxy)
 
 ## config and tutorials from [Bruno Simon](https://bruno-simon.com)
 
