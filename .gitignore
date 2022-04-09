@@ -5,3 +5,7 @@
 dist/
 
 todo.html
+
+src/scene
+src/shaders/galaxy
+

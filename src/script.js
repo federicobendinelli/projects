@@ -20,7 +20,7 @@ const canvas = document.querySelector("canvas.webgl");
 // Scene
 const scene = new THREE.Scene();
 
-var useDebug = true;
+var useDebug = window.location.hash == '#debug';
 
 /**
  * Galaxy
