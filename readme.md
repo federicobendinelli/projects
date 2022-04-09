@@ -1,5 +1,7 @@
 # Projects
 
+# [Demo](https://fede.didosystem.ch/projects)
+
 ## config and tutorials from [Bruno Simon](https://bruno-simon.com)
 
 ## to see all projects, 
