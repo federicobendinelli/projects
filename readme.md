@@ -1,11 +1,9 @@
-# Idee
+# Idee (ancora in sviluppo)
 
-## il mio progetto è quello di creare un software che riesca a prendere decisioni secondo molteplici fattori
-
+## qui ci sono delle idee di progetti
 
 
 ## Se volete provare andate sul [sito](https://fede.didosystem.ch/Idee)
-
 
 
 ## Se volete modificarlo a vostro piacimento, seguite questi passaggi
